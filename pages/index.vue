@@ -4,10 +4,11 @@
       div.header-start
         img.site-logo(src="~assets/img/logo.png")
       div.header-end
-        a.top-link Primitives
+        a.top-link Guide
         div.dropdown-menu
-          p.top-link Libraries <span class="arrow"> &#9662; </span>
-          ul.menu-options
+          button(@click="showOptions = !showOptions")
+            p.top-link Libraries <span class="arrow"> &#9662; </span>
+          ul.menu-options(:style="optionsClass")
             li
               a(href="") Plain JS
             li
@@ -15,7 +16,7 @@
 
     div.landing-body
       div.intro-container
-        h1.intro-slogan Enhanced concurrency utilities for Javascript.
+        h1.intro-slogan Enhanced concurrency primitives for Javascript.
         h3.intro-description
           | Gain complete control and transparency over the execution of concurrent
           |  and asyncronous operations, with almost no code.
@@ -58,6 +59,16 @@
 </template>
 <script>
 export default {
+  data: () => ({
+    showOptions: false
+  }),
+  computed: {
+    optionsClass () {
+      return {
+        display: this.showOptions ? 'block' : 'none'
+      }
+    }
+  }
 }
 </script>
 <style lang="sass">
@@ -70,13 +81,17 @@ $primary-1: #2c8ba0
 $primary-4: #d7eff4
 
 .landing-page
+  height: 100vh
   ul
     list-style-type: none
     padding-left: 0
   a
     cursor: pointer
+    color: #515151
     &:hover
       text-decoration: none
+  button
+    outline: none
 
 .landing-header
   +flex-contain(row, wrap)
@@ -98,24 +113,26 @@ $primary-4: #d7eff4
     position: relative
     .menu-options
       display: none
-    &:hover .menu-options
-      display: block
       position: absolute
       top: 1.75rem
-      width: 8rem
+      width: 6rem
       background: #fff
       border: 1px $primary-4 solid
       border-radius: 10px
       padding: .5rem 1rem
-      a
-        color: #515151
+    +media('>tablet')
+      &:hover .menu-options
+        display: block
+        width: 8rem
   button
     background: #fff
     border: none
   .top-link
     font-size: 1rem
     color: $gray-1
-    margin: 0 .5rem
+    margin: 0 .25rem 0 0
+    +media('>tablet')
+      margin: 0 .5rem
   .arrow
     color: $gray-4
     margin-left: -.125rem
