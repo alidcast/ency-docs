@@ -1,3 +1,5 @@
+const resolve = require('path').resolve
+
 module.exports = {
   head: {
     title: 'Ency.js',
@@ -17,11 +19,15 @@ module.exports = {
   loading: { color: '#3B8070' },
   build: {
     extend (config, ctx) {
-      config.module.rules.push({
-        test: /\.md/,
-        loader: 'vue-markdown-loader'
-      })
+      /**
+       * Alias
+       */
+      config.resolve.alias['~articles'] = resolve(__dirname, 'articles')
+      config.resolve.alias['~utilities'] = resolve(__dirname, 'utilities')
 
+      /**
+       * Loaders.
+       */
       if (ctx.isClient) {
         config.module.rules.push({
           enforce: 'pre',
@@ -30,6 +36,10 @@ module.exports = {
           exclude: /(node_modules)/
         })
       }
+      config.module.rules.push({
+        test: /\.md/,
+        loader: 'vue-markdown-loader'
+      })
     },
     vendor: [
       'vuency'
