@@ -7,7 +7,7 @@
       div.header-end
         a.top-link Primitives
         div.dropdown-menu
-          p.top-link Frameworks <span class="arrow"> &#9662; </span>
+          p.top-link Libraries <span class="arrow"> &#9662; </span>
           ul.menu-options(:style="optionsClass")
             li
               a(href="") Plain JS
