@@ -1,14 +1,13 @@
 <template lang="pug">
-  div.landing-container
+  div.landing-page
     div.landing-header
       div.header-start
-        img.site-logo(src="~assets/img/ency.png")
-        h1.site-title ency.js
+        img.site-logo(src="~assets/img/logo.png")
       div.header-end
         a.top-link Primitives
         div.dropdown-menu
           p.top-link Libraries <span class="arrow"> &#9662; </span>
-          ul.menu-options(:style="optionsClass")
+          ul.menu-options
             li
               a(href="") Plain JS
             li
@@ -59,16 +58,6 @@
 </template>
 <script>
 export default {
-  data: () => ({
-    showOptions: false
-  }),
-  computed: {
-    // optionsClass () {
-    //   return {
-    //     display: this.showOptions ? 'block' : 'none'
-    //   }
-    // }
-  }
 }
 </script>
 <style lang="sass">
@@ -80,35 +69,33 @@ $gray-4: #e6e6e6
 $primary-1: #2c8ba0
 $primary-4: #d7eff4
 
+.landing-page
+  ul
+    list-style-type: none
+    padding-left: 0
+  a
+    cursor: pointer
+    &:hover
+      text-decoration: none
+
 .landing-header
   +flex-contain(row, wrap)
   +flex-place('children', end, center)
   padding: .5rem
-  a
-    cursor: pointer
   +media('>tablet')
     padding: 1rem 3rem
 .header-start
   +flex-place('self', start, center)
   .site-logo
-    height: 28px
-    width: 28px
+    height: 40px
+    width: 125px
     margin: .25rem
-  .site-title
-    font-size: 1.75rem
-    color: $gray-1
-    line-height: 100%
-    vertical-align: middle
-    margin-left: .25rem
 
 .header-end
   +flex-contain(row, wrap)
   +flex-place('children', center, center)
   .dropdown-menu
     position: relative
-    ul
-      list-style-type: none
-      padding-left: 0
     .menu-options
       display: none
     &:hover .menu-options
@@ -129,8 +116,6 @@ $primary-4: #d7eff4
     font-size: 1rem
     color: $gray-1
     margin: 0 .5rem
-    &:hover
-      text-decoration: none
   .arrow
     color: $gray-4
     margin-left: -.125rem
