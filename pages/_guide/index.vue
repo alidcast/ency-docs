@@ -3,6 +3,7 @@
       GuideToolbar
       GuideContent(:lesson="currentLesson")
 </template>
+
 <script>
 import GuideContent from '~components/GuideContent'
 import GuideToolbar from '~components/GuideToolbar'

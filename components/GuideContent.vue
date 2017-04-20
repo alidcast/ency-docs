@@ -23,7 +23,7 @@ export default {
   padding: 1rem
   margin: 0 auto
   +media('>desktop')
-    margin-left: 19rem
+    margin-left: 21rem
   // general content styles
   h1
     margin-bottom: 1rem

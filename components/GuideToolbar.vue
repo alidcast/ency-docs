@@ -42,7 +42,7 @@ export default {
 
 .toolbar
   background-color: $primary-3
-  padding-left: 1rem
+  // padding-left: 0
   a
     color: inherit
     text-decoration: none
@@ -61,9 +61,9 @@ export default {
     position: fixed
     top: 0
     height: 100vh
-    width: 15rem
+    width: 18rem
     max-width: 100%
-    margin-right: 5rem
+    // margin-right: 5rem
 
 .toolbar-masthead
   text-align: center
@@ -84,7 +84,7 @@ export default {
     display: block
     +position(relative)
     margin: 0 auto
-    font-size: 85%
+    font-size: 92%
     font-weight: 400
     text-align: left
     span
@@ -94,9 +94,9 @@ export default {
 .toolbar-menu
   position: relative
   +media('>desktop')
-    height: 69%
-    width: 120%
-    margin-left: 1.75rem
+    height: 72%
+    width: 118%
+    margin-left: 1.5rem
 .mobile-menu-button
   display: block
   margin: 1rem 1rem
@@ -130,8 +130,8 @@ export default {
 
 .github-link
   +media('>desktop')
-    width: 161%
-    margin-left: -20%
+    width: 201%
+    margin-left: -41%
   .icon-github
     font-size: 2rem
     color: $primary-1
