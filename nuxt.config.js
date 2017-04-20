@@ -63,8 +63,8 @@ function menuToRoutes(menu, query = '/') {
   menu.forEach(group => {
     // for simplicity, we ignore group headings and just create a top level route
     // for each subsection
-    if (group[1] instanceof Array) group[1].forEach(subsection => routes.push(`/${query}/${subsection}`))
-    else group.forEach(section => routes.push(`/${query}/${section}`))
+    if (group[1] instanceof Array) group[1].forEach(subsection => routes.push(`${query}${subsection}`))
+    else group.forEach(section => routes.push(`${query}${section}`))
   })
   return routes
 }
