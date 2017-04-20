@@ -1,4 +1,5 @@
 const resolve = require('path').resolve
+const menu = require('./docs.menu')
 
 module.exports = {
   head: {
@@ -47,5 +48,23 @@ module.exports = {
   },
   plugins: [
     '~plugins/vuency'
-  ]
+  ],
+  generate: {
+    routes: menuToRoutes(menu)
+  }
+}
+
+/**
+ * Convert a list of menu items to an array of dynamic route params.
+ *
+ */
+function menuToRoutes(menu, query = '/') {
+  let routes = []
+  menu.forEach(group => {
+    // for simplicity, we ignore group headings and just create a top level route
+    // for each subsection
+    if (group[1] instanceof Array) group[1].forEach(subsection => routes.push(`/${query}/${subsection}`))
+    else group.forEach(section => routes.push(`/${query}/${section}`))
+  })
+  return routes
 }
