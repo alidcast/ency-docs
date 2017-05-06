@@ -5,7 +5,7 @@
       p.site-slogan Concurrency management <span> for Javascript. </span>
 
     div.toolbar-menu
-      button.mobile-menu-button(@click="showMenu = !showMenu") Guide
+      button.mobile-menu-button(@click="toggleDisplay") Guide
       GuideMenu(class="main-menu" :style="menuStyle" :menu="menu")
 
     div.toolbar-links
@@ -18,6 +18,10 @@ import menu from '../docs.menu'
 import GuideMenu from '~components/GuideMenu'
 
 export default {
+  props: {
+    toggleContent: { type: Function, required: true }
+  },
+
   data: () => ({
     menu,
     showMenu: false
@@ -25,9 +29,14 @@ export default {
 
   computed: {
     menuStyle () {
-      return {
-        'display': this.showMenu ? 'block' : 'none'
-      }
+      return { 'display': this.showMenu ? 'block' : 'none' }
+    }
+  },
+
+  methods: {
+    toggleDisplay () { // display of content and menu is inversed
+      this.toggleContent()
+      this.showMenu = !this.showMenu
     }
   },
 
@@ -53,6 +62,7 @@ export default {
   width: 100vw
   height: 4rem
   padding: 0 .75rem
+  margin-bottom: 1rem
   +media('>phone')
     padding: 0 2rem
   +media('>desktop')
@@ -130,8 +140,8 @@ export default {
 
 .github-link
   +media('>desktop')
-    width: 201%
-    margin-left: -41%
+    width: 200%
+    margin-left: -40%
   .icon-github
     font-size: 2rem
     color: $primary-1

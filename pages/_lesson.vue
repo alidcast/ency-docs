@@ -1,17 +1,42 @@
-<template lang="pug">
-  div
-    component.content(:is="lesson")
+<template lang='pug'>
+  div.guide-page
+      GuideToolbar(:toggleContent="toggleContent")
+      component.content(:is="currentLesson" :style="contentStyle")
 </template>
 
 <script>
+import GuideToolbar from '~components/GuideToolbar'
+import { toHeading } from '~utilities/to-transforms'
 import docs from '~articles/index'
 
 export default {
-  props: {
-    lesson: { type: String, required: true }
+  asyncData ({ params }) {
+    return {
+      showContent: true,
+      currentLesson: params.lesson || 'introduction'
+    }
   },
 
-  components: docs
+  head () {
+    return { title: 'Vuency - ' + toHeading(this.currentLesson) }
+  },
+
+  computed: {
+    contentStyle () {
+      return { 'display': this.showContent ? 'block' : 'none' }
+    }
+  },
+
+  methods: {
+    toggleContent () {
+      this.showContent = !this.showContent
+    }
+  },
+
+  components: {
+    GuideToolbar,
+    ...docs
+  }
 }
 </script>
 

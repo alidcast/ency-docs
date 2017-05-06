@@ -13,7 +13,6 @@
           a.section-heading(:href="`/${subsection}`") {{ subsection | titlelize }}
 </template>
 
-
 <script>
 import { toHeading } from '~utilities/to-transforms'
 

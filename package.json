@@ -4,12 +4,6 @@
   "description": "Ency documentation.",
   "author": "Alid Castano <alidcastano@gmail.com>",
   "private": true,
-  "dependencies": {
-    "highlight.js": "^9.10.0",
-    "nuxt": "latest",
-    "sass-chunks": "0.0.2",
-    "vuency": "0.0.93"
-  },
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",
@@ -18,6 +12,12 @@
     "deploy": "push-dir --dir=dist --branch=gh-pages --cleanup",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "precommit": "npm run lint"
+  },
+  "dependencies": {
+    "highlight.js": "^9.10.0",
+    "nuxt": "^0.10.7",
+    "sass-chunks": "0.0.2",
+    "vuency": "0.0.93"
   },
   "devDependencies": {
     "babel-eslint": "^7.1.1",
