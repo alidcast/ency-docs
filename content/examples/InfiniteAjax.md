@@ -54,9 +54,9 @@ export default {
       // Only one infinite ajax can run at a time, drop all other calls.
       .flow('drop')
       // Simulate infinite loop: Keep the first call in running queue.
-      .nthCall(1, { keepRunning: true })
+      .nthCall(1, { keepActive: true })
       // If the instance is destroyed cancel all ajax calls and clean up.
-      .onDestroy(() => {
+      .onDispose(() => {
         loopingAjax.abort()
         this.instances = []
       })

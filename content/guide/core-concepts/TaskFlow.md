@@ -10,21 +10,21 @@ export default {
 
 # Managing Task Concurrency
 
-You'll often want to control the flow and frequency of concurrent operations. For example, you might not want to fire an ajax call until the user stops typing or you might only want to request the scroll position of a page after a certain period of time. Vuency was built for these sort of operations in mind. All tasks have a `flow` modifier that you can use to manage the flow of repeat requests.
+You'll often want to control the flow and frequency of concurrent operations. For example, you might not want to fire an ajax call until the user stops typing or you might only want to request the scroll position of a page after a certain period of time. Ency was built for these sort of operations in mind. Tasks have a `flow` modifier that you can use to manage the flow of repeat requests.
 
 
 ## Task Flow
 
 #### Default Behavior: Tasks Run Concurrently
 
-By default, tasks run concurrently. In the demo below, notice how calling an operation multiple times during the same period of time causes the lifespan of each operation overlap.
+By default, tasks run concurrently. In the demo below, notice how multiple calls to the same operation during the same period of time causes the lifespan of each one to overlap.
 
 <div class="showcase">
   <ConcurrencyTimeline flow="default" />
 </div>
 
 
- Most of the time you won't want repeat calls to overlap, so you can use the `flow` modifier to specify policies and constraints for how subsequent calls should be handled.
+Most of the time you won't want repeat calls to overlap, so you can use the `flow` modifier to specify policies and constraints for how repeat calls should be handled.
 
 There are three options: you can either `enqueue`, `restart`, or `drop` repeat requests.
 
@@ -44,9 +44,7 @@ export default {
 
 With `.flow('enqueue')`, repeat calls are enqueued and only run when the previous call finishes.
 
-Think of this as the "love all children equally" scheduling policy. It's useful when all instances are equally important and you want all of them to run but not during the same span of time so as not to overpower the main thread.
-
-In the demo below, notice how repeat calls do not overlap anymore, but all of them are indeed eventually run to completion.
+In the demo below, notice how repeat calls do not overlap but all of them are eventually run to completion.
 
 <div class="showcase">
   <ConcurrencyTimeline flow="enqueue" />
@@ -56,9 +54,7 @@ In the demo below, notice how repeat calls do not overlap anymore, but all of th
 
 With `.flow('drop')`, repeat calls are dropped and ignored.
 
-Think of this as the "favor the first born" scheduling policy. It's useful when all instances are equally important but you only need one instance to run to completion during the same span of time.
-
-In the demo below, notice how once the first instance starts running, any other calls during the same time period are dropped never waited on or fired.
+In the demo below, notice how once the first instance starts running, all other calls during the same time period are never waited on or fired.
 
 <div class="showcase">
   <ConcurrencyTimeline flow="drop" />
@@ -67,9 +63,7 @@ In the demo below, notice how once the first instance starts running, any other 
 
 #### Restart
 
-With `flow('restart')`, repeat calls cause any ongoing operations to be canceled and in favor of the newest instance of the operation.
-
-Think of this as the "favor the youngest child" scheduling policy. It's useful when the most recent call is the most important, for example if it holds newer data that renders the previous call useless, so you don't need the older ones to keep running.
+With `flow('restart')`, repeat calls cancel ongoing operations in favor of the newly created instance of the operation.
 
 In the example below, notice how if a new instance is created during the same span of time, the older, ongoing instance is immediately canceled.
 
@@ -123,6 +117,6 @@ Now, when you run the task, each instance waits 400ms before starting. If it's c
 
 ### How does this differ from throttle and debounce functions?
 
-Vuency buffers the execution of tasks using queues, while throttle and debounce functions use timers. The benefit of using queues, is that it gives you more control over how repeat requests are run because you always have access to the ongoing operations.
+Ency buffers the execution of tasks using queues, while throttle and debounce functions use timers. The benefit of using queues, is that you always have access to the ongoing operations, which gives you more control over how repeat requests are run.
 
-An additional benefit of Vuency's flow policies is that their usage is more straightforward and semantic.
+Another benefit of Ency's flow policies is that their usage is more straightforward and semantic.

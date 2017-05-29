@@ -145,9 +145,9 @@ For more on task registration, see the [getting started](/getting-started) secti
 * Arguments:
   - `{Number} call number`
   - `{Object} options`
-    - `{Boolean} keepRunning`
+    - `{Boolean} keepActive`
 
-* Syntax: `task.nthCall(1, { keepRunning: true })`
+* Syntax: `task.nthCall(1, { keepActive: true })`
 
 * Details:
 

@@ -1,6 +1,6 @@
 # Subscribing to Task Callbacks
 
-Writing complex operations can get messy and it can be useful to semantically separate what's going on. Because of this, Vuency allows you to subscribe to callbacks that are called based on different  stages or results of an operation.
+Writing complex operations can get messy and it can be useful to semantically separate corner case logic from the core logic of the operation. Because of this, Ency allows you to subscribe to callbacks that are executed based on different  stages or results of an operation.
 
 There are three main types of subscriptions:
 
@@ -18,7 +18,7 @@ For example:
 
 ```js
 task.beforeStart((instance) => {
-  if (!cornerCase) instance.cancel()
+  if (!someCornerCase) instance.cancel()
 })
 
 task.onFinish(({ selfCanceled }) => {
