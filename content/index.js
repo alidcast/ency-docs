@@ -1,5 +1,4 @@
 import Introduction from './guide/Introduction.md'
-import Installation from './guide/Installation.md'
 import GettingStarted from './guide/GettingStarted.md'
 import TaskFlow from './guide/core-concepts/TaskFlow.md'
 import TaskCancelation from './guide/core-concepts/TaskCancelation.md'
@@ -17,7 +16,6 @@ import TaskBindings from './guide/core-concepts/TaskBindings.md'
 
 export default {
   Introduction,
-  Installation,
   GettingStarted,
   // concepts
   TaskFlow,

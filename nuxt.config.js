@@ -23,7 +23,7 @@ module.exports = {
       /**
        * Alias
        */
-      config.resolve.alias['~articles'] = resolve(__dirname, 'articles')
+      config.resolve.alias['~content'] = resolve(__dirname, 'content')
       config.resolve.alias['~utilities'] = resolve(__dirname, 'utilities')
 
       /**

@@ -7,7 +7,7 @@
 <script>
 import GuideToolbar from '~components/GuideToolbar'
 import { toHeading } from '~utilities/to-transforms'
-import docs from '~articles/index'
+import docs from '~content/index'
 
 export default {
   asyncData ({ params }) {
