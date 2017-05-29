@@ -1,16 +1,16 @@
 <template>
   <div>
     <div>
-      <button @click="runTrackerInstance">Run Task</button>
+      <button @click="runTrackerInstance"> Run Task </button>
       <button @click="clearTimeline">Clear Timeline</button>
       <button
-        v-if="canCancelLast && trackerTask.lastCalled && !trackerTask.lastCalled.isFinished"
-        @click="trackerTask.lastStarted.cancel()">
+        v-if="canCancelLast && slowTask.lastCalled && !slowTask.lastCalled.isFinished"
+        @click="slowTask.lastStarted.cancel()">
         Cancel Last
       </button>
       <button
-        v-if="canCancelAll && trackerTask.isActive"
-        @click="trackerTask.abort()">
+        v-if="canCancelAll && slowTask.isActive"
+        @click="slowTask.abort()">
         Cancel All
       </button>
     </div>
@@ -53,7 +53,7 @@
 
 <script>
 /**
- * Enhance task property so that it can be used for tracker graph.
+ * Enhance task property so that I can be used for tracker graph.
  */
 function createTrackerInstance (host) {
   var colors = ['red', 'green', 'blue'],
@@ -122,18 +122,17 @@ export default {
       xTimeline: 0
     }
   },
-
   tasks (t, { timeout }) {
     return {
-      trackerTask: t(function * () {
+      slowTask: t(function * () {
         yield timeout(2000)
       }).flow(this.flow, { delay: this.delay, maxRunning: this.maxRunning }),
 
-      ticker: t(function * () {
+      ticker: t(async (tracker) => {
         while (true) {
           this.timeElapsed = new Date() - this.startTime
-          window.requestAnimationFrame(this.updateInstances)
-          yield timeout(10)
+          this.updateInstances()
+          await timeout(10)
         }
       }).flow('drop')
     }
@@ -159,20 +158,20 @@ export default {
       this.startTime = this.startTime || new Date()
 
       const instance = createTrackerInstance(this)
-      instance.taskInstance = this.trackerTask.run()
+      instance.taskInstance = this.slowTask.run()
       this.trackedInstances.push(instance)
 
-      this.ticker.run()
+      this.ticker.run(this.trackedInstances)
     },
 
     updateInstances () {
-      var tracker = this,
-          currTime = this.timeElapsed,
-          upper = this.upperLimit, lower = this.lowerLimit
+      var currTime = this.timeElapsed,
+          upper = this.upperLimit,
+          lower = this.lowerLimit
 
       window.requestAnimationFrame(() => {
-        tracker.xTimeline = scale(currTime, upper, lower)
-        tracker.trackedInstances.forEach(instance => {
+        this.xTimeline = scale(currTime, upper, lower)
+        this.trackedInstances.forEach(instance => {
           instance.update(currTime, upper, lower)
         })
       })
@@ -180,7 +179,7 @@ export default {
 
     clearTimeline () {
       this.trackedInstances = []
-      this.trackerTask.abort()
+      this.slowTask.abort()
       this.ticker.abort()
       this.nextId = 0
       this.startTime = 0
@@ -195,7 +194,8 @@ function scale (value, upper, lower) {
 }
 
 function width (instance, upper) {
-  var start = instance.startTime, end = instance.endTime
+  var start = instance.startTime,
+      end = instance.endTime
   return (end === Infinity) ? upper - start : end - start
 }
 

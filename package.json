@@ -17,7 +17,7 @@
     "highlight.js": "^9.10.0",
     "nuxt": "^0.10.7",
     "sass-chunks": "0.0.2",
-    "vuency": "0.0.93"
+    "vuency": "0.0.94"
   },
   "devDependencies": {
     "babel-eslint": "^7.1.1",
