@@ -18,7 +18,7 @@ export default {
   },
 
   head () {
-    return { title: 'Vuency - ' + toHeading(this.currentLesson) }
+    return { title: 'Ency - ' + toHeading(this.currentLesson) }
   },
 
   computed: {
