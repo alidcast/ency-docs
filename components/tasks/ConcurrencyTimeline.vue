@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <button @click="runTrackerInstance"> Run Task </button>
+      <button @click="runTrackerInstance">Run Task</button>
       <button @click="clearTimeline">Clear Timeline</button>
       <button
         v-if="canCancelLast && trackerTask.lastCalled && !trackerTask.lastCalled.isFinished"
@@ -53,7 +53,7 @@
 
 <script>
 /**
- * Enhance task property so that I can be used for tracker graph.
+ * Enhance task property so that it can be used for tracker graph.
  */
 function createTrackerInstance (host) {
   var colors = ['red', 'green', 'blue'],
@@ -122,6 +122,7 @@ export default {
       xTimeline: 0
     }
   },
+
   tasks (t, { timeout }) {
     return {
       trackerTask: t(function * () {
@@ -156,9 +157,11 @@ export default {
   methods: {
     runTrackerInstance () {
       this.startTime = this.startTime || new Date()
+
       const instance = createTrackerInstance(this)
-      instance.taskInstance = this.trackerTask.run(instance)
+      instance.taskInstance = this.trackerTask.run()
       this.trackedInstances.push(instance)
+
       this.ticker.run()
     },
 

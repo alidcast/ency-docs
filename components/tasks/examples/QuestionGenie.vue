@@ -13,8 +13,8 @@ export default {
     question: '',
     answer: ''
   }),
-  tasks(t, { timeout }) {
-    return t(function * getAnswer() {
+  tasks (t, { timeout }) {
+    return t(function * getAnswer () {
       this.answer = 'Thinking...'
       yield timeout(600)
       this.answer = Math.random() < 0.5 ? 'Yes' : 'No'

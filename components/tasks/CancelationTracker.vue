@@ -49,7 +49,7 @@ export default {
         this.runCount--
       }
     })
-    .flow('drop', { maxRunning: 2 })
+    .flow('drop', { maxRunning: 100 })
     .beforeStart(function (instance) {
       const index = instance.params[0]
       this.instances[index] = instance

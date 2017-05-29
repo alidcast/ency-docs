@@ -32,14 +32,14 @@ export default {
     logs: [],
     instances: []
   }),
-  tasks(t, { timeout }) {
-    let loopingAjax = t(function * (id, color) {
+  tasks (t, { timeout }) {
+    const loopingAjax = t(function * (id, color) {
       this.log(color, `Task ${id}: making AJAX request`)
       yield timeout(1000 + 2000 * Math.random()) // simulate slow AJAX
     })
     .flow('enqueue', { maxRunning: 3 })
     .onFinish(({ params, isCanceled }) => {
-      let id = params[0], color = params[1]
+      var id = params[0], color = params[1]
       if (!isCanceled) {
         this.log(color, `Task ${id}: Done, sleeping.`)
       } else {
@@ -50,8 +50,8 @@ export default {
       }
     })
 
-    return t(function * infiniteAjax() {
-      let { instances } = this
+    return t(function * infiniteAjax () {
+      const { instances } = this
       instances.push(loopingAjax.run(1, '#0000FF'))
       instances.push(loopingAjax.run(2, '#8A2BE2'))
       instances.push(loopingAjax.run(3, '#DC143C'))
@@ -61,18 +61,18 @@ export default {
       instances.push(loopingAjax.run(7, '#4FC40A'))
     })
     .flow('drop')
-    .nthCall(1, { keepRunning: true })
-    .onDestroy(() => {
+    .nthCall(1, { keepActive: true })
+    .onDispose(() => {
       loopingAjax.abort()
       this.instances = []
     })
   },
-  created() {
+  created () {
     this.infiniteAjax.run()
   },
   methods: {
-    log(color, message) {
-      let logs = this.logs || []
+    log (color, message) {
+      const logs = this.logs || []
       logs.push({ color, message })
       this.logs = logs.slice(-7)
     }

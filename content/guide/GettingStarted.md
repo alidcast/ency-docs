@@ -23,6 +23,8 @@ There are two aspects to working with tasks:
 First, initialize the `task factory` function with the `this` context
 you want to task objects. Then, call the factory function with your desired operation.
 
+The task's operation can be either a [generator function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function) or [async function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function). The main difference between the two options is that generator functions can yield control over their execution and so, they can be canceled at any point. For this reason, we recommend you use generator functions, as we do in our examples, so that you can take advantage of the full power of Ency.
+
 ```js
 import { initTask } from 'ency'
 
@@ -32,8 +34,7 @@ const myTask = task(function * exOperation() {...})
 
 ```
 
-*Note: The operation can be either a [generator function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function) or [async function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function). The main difference between the two options is that generator functions can yield control over their execution and so, they can be canceled at any point. For this reason, we recommend you use generator functions, as we do in our examples, so that you can take advantage of the full power of Ency.*
-
+*If you're using Ency with a library for a specific framework, such as Vuency, then the initialization of the task factory function is probably already done for you and the task context is the component instance where it's being used.*
 
 This returns a task object that you can use to run the operation or check its state, along with other useful task properties.
 
