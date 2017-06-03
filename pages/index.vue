@@ -11,9 +11,9 @@
             p.top-link Libraries <span class="arrow"> &#9662; </span>
           ul.menu-options(:style="optionsClass")
             li
-              a(href="") Plain JS
+              a(href="https://github.com/encyjs/ency" target="_blank") Plain JS
             li
-              a(href="") Vue.js
+              a(href="https://github.com/encyjs/vuency" target="_blank") Vue.js
 
     div.landing-lead
       div.pitch-container

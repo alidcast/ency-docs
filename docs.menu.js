@@ -20,10 +20,10 @@ module.exports = [
   ],
   ['examples',
     [
-      'coin-flip',
+      'question-genie',
+      'coin-flip'
       // 'countdown-timer',
       // 'infinite-ajax',
-      'question-genie'
     ]
   ]
 ]
