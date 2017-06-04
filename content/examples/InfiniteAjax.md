@@ -11,10 +11,10 @@ export default {
 ## Infinite Ajax
 
 <div class="showcase">
-    <InfiniteAjax />
+  <InfiniteAjax />
 </div>
 
-
+<!--
 #### Script
 
 ```js
@@ -109,4 +109,4 @@ export default {
     </ul>
   </div>
 </div>
-```
+``` -->

@@ -11,9 +11,10 @@ export default {
 ## Coin Flip
 
 <div class="showcase">
-    <CoinFlip />
+  <CoinFlip />
 </div>
 
+<!--
 ### Script
 
 ```js
@@ -49,4 +50,4 @@ export default {
     {{ flipCoin.isActive ? 'May the odds be with you...' : 'Flip coin'}}
   </button>
 </div>
-```
+``` -->
