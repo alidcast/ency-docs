@@ -21,9 +21,9 @@ module.exports = [
   ['examples',
     [
       'question-genie',
-      'coin-flip'
-      // 'countdown-timer',
-      // 'infinite-ajax',
+      'coin-flip',
+      'countdown-timer',
+      'infinite-ajax'
     ]
   ]
 ]

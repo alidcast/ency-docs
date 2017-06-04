@@ -14,19 +14,21 @@ export default {
     <CountdownTimer />
 </div>
 
-#### Javascript
+### Script
 
 ```js
 const COUNT_START = 10
+
 export default {
   data: () => ({
     count: COUNT_START
   }),
+
   tasks: (t, { timeout }) => ({
-    counter: t(function* () {
+    counter: t(function * () {
       this.count = COUNT_START
       while (this.count > 0) {
-        // Pause for a little before counting down.
+        // Pause before each count.
         yield timeout(300)
         --this.count
       }
@@ -38,7 +40,7 @@ export default {
 }
 ```
 
-#### Template
+### Template
 
 ```html
 <div>

@@ -14,7 +14,8 @@ export default {
     <InfiniteAjax />
 </div>
 
-#### Javascript
+
+#### Script
 
 ```js
 export default {
@@ -22,8 +23,8 @@ export default {
     logs: [],
     instances: []
   }),
-  tasks(t, { timeout }) {
-    let loopingAjax = t(function * (id, color) {
+  tasks (t, { timeout }) {
+    const loopingAjax = t(function * (id, color) {
       this.log(color, `Task ${id}: making AJAX request`)
       yield timeout(1000 + 2000 * Math.random()) // simulate slow AJAX
     })
@@ -32,17 +33,21 @@ export default {
     .flow('enqueue', { maxRunning: 3 })
     // Report the result finished of the ajax call.
     .onFinish(({ params, isCanceled }) => {
-      let id = params[0], color = params[1]
-      if (!isCanceled) this.log(color, `Task ${id}: Done, sleeping.`)
-      else this.log(color, `Task ${id}: Sorry, I've been sent to the abyss!`)
+      var id = params[0], color = params[1]
+      if (!isCanceled) {
+        this.log(color, `Task ${id}: Done, sleeping.`)
+      } else {
+        this.log(color, `Task ${id}: Sorry, I've been sent to the abyss!`)
+      }
       // If all looping ajax calls weren't "nuked", keep running.
       if (!loopingAjax.isAborted) {
         this.instances[id] = loopingAjax.run(id, color)
       }
     })
+
     return {
       infiniteAjax: t(function * () {
-        let { instances } = this
+        const { instances } = this
         instances.push(loopingAjax.run(1, '#0000FF'))
         instances.push(loopingAjax.run(2, '#8A2BE2'))
         instances.push(loopingAjax.run(3, '#DC143C'))
@@ -53,21 +58,21 @@ export default {
       })
       // Only one infinite ajax can run at a time, drop all other calls.
       .flow('drop')
-      // Simulate infinite loop: Keep the first call in running queue.
+      // Simulate infinitely active task
       .nthCall(1, { keepActive: true })
-      // If the instance is destroyed cancel all ajax calls and clean up.
+      // If the instance is destroyed, cancel all ajax calls and clean up.
       .onDispose(() => {
         loopingAjax.abort()
         this.instances = []
       })
     }
   },
-  created() {
+  created () {
     this.infiniteAjax.run()
   },
   methods: {
-    log(color, message) {
-      let logs = this.logs || []
+    log (color, message) {
+      const logs = this.logs || []
       logs.push({ color, message })
       this.logs = logs.slice(-7)
     }
@@ -75,11 +80,19 @@ export default {
 }
 ```
 
-#### Template
+
+### Template
 
 ```html
 <div class="infinite-ajax">
-  <div class="ajax-controls">
+  <ul class="ajax-calls">
+    <li v-for="log in logs"
+        :style="{ color: log.color }">
+      {{ log.message }}
+    </li>
+  </ul>
+
+  <div class="ajax-controls" v-if="logs">
     <button v-if="infiniteAjax.isActive" @click="infiniteAjax.abort()">
       Nuke All
     </button>
@@ -91,16 +104,9 @@ export default {
       <li v-for="(instance, index) in instances" v-if="instance.isRunning">
         <button @click="instance.cancel()">
             Cancel Task: {{ index }}
-          </button>
+        </button>
       </li>
     </ul>
   </div>
-
-  <ul class="ajax-calls">
-    <li v-for="log in logs"
-        :style="{ color: log.color }">
-      {{ log.message }}
-    </li>
-  </ul>
 </div>
 ```

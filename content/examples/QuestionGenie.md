@@ -1,9 +1,11 @@
 <script>
 import QuestionGenie from '~components/tasks/examples/QuestionGenie.vue'
+import CoinFlip from '~components/tasks/examples/CoinFlip.vue'
 
 export default {
   components: {
-    QuestionGenie
+    QuestionGenie,
+    CoinFlip
   }
 }
 </script>
@@ -15,6 +17,11 @@ export default {
 <div class="showcase">
     <QuestionGenie />
 </div>
+
+<div class="showcase">
+    <CoinFlip />
+</div>
+
 
 #### Javascript
 

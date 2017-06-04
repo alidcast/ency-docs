@@ -50,22 +50,24 @@ export default {
       }
     })
 
-    return t(function * infiniteAjax () {
-      const { instances } = this
-      instances.push(loopingAjax.run(1, '#0000FF'))
-      instances.push(loopingAjax.run(2, '#8A2BE2'))
-      instances.push(loopingAjax.run(3, '#DC143C'))
-      instances.push(loopingAjax.run(4, '#20B2AA'))
-      instances.push(loopingAjax.run(5, '#FF1493'))
-      instances.push(loopingAjax.run(6, '#DAA520'))
-      instances.push(loopingAjax.run(7, '#4FC40A'))
-    })
-    .flow('drop')
-    .nthCall(1, { keepActive: true })
-    .onDispose(() => {
-      loopingAjax.abort()
-      this.instances = []
-    })
+    return {
+      infiniteAjax: t(function * () {
+        const { instances } = this
+        instances.push(loopingAjax.run(1, '#0000FF'))
+        instances.push(loopingAjax.run(2, '#8A2BE2'))
+        instances.push(loopingAjax.run(3, '#DC143C'))
+        instances.push(loopingAjax.run(4, '#20B2AA'))
+        instances.push(loopingAjax.run(5, '#FF1493'))
+        instances.push(loopingAjax.run(6, '#DAA520'))
+        instances.push(loopingAjax.run(7, '#4FC40A'))
+      })
+      .flow('drop')
+      .nthCall(1, { keepActive: true })
+      .onDispose(() => {
+        loopingAjax.abort()
+        this.instances = []
+      })
+    }
   },
   created () {
     this.infiniteAjax.run()

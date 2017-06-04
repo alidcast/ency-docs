@@ -14,6 +14,7 @@ export default {
   data: () => ({
     count: COUNT_START
   }),
+
   tasks: (t, { timeout }) => ({
     counter: t(function * () {
       this.count = COUNT_START
