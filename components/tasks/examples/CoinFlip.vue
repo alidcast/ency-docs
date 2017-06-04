@@ -1,6 +1,8 @@
 <template>
   <div class="coin-flip">
-    <p> Heads or Tails? {{ answer }} </p>
+    <p>
+      Heads or Tails? {{ answer }}
+    </p>
     <button @click="flipCoin.run()">
       {{ flipCoin.isActive ? 'May the odds be with you...' : 'Flip coin'}}
     </button>

@@ -18,7 +18,7 @@ module.exports = [
       'task-instance'
     ]
   ],
-  ['examples',
+  ['vue-examples',
     [
       'question-genie',
       'coin-flip',

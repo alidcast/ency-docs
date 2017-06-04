@@ -1,9 +1,7 @@
 <template>
-  <div>
-    <div class="countdown-timer ">
-      <p> Count: {{ this.count }}</p>
-      <button @click="counter.run()"> Start Over </button>
-    </div>
+  <div class="countdown-timer">
+    <p> Count: {{ this.count }}</p>
+    <button @click="counter.run()"> Start Over </button>
   </div>
 </template>
 
