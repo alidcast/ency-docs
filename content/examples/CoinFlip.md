@@ -14,7 +14,6 @@ export default {
   <CoinFlip />
 </div>
 
-<!--
 ### Script
 
 ```js
@@ -50,4 +49,4 @@ export default {
     {{ flipCoin.isActive ? 'May the odds be with you...' : 'Flip coin'}}
   </button>
 </div>
-``` -->
+```

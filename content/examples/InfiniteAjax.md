@@ -14,7 +14,6 @@ export default {
   <InfiniteAjax />
 </div>
 
-<!--
 #### Script
 
 ```js
@@ -109,4 +108,4 @@ export default {
     </ul>
   </div>
 </div>
-``` -->
+```

@@ -14,7 +14,6 @@ export default {
     <CountdownTimer />
 </div>
 
-<!--
 ```js
 const COUNT_START = 10
 
@@ -46,4 +45,4 @@ export default {
     <button @click="counter.run()"> Start Over </button>
   </div>
 </div>
-``` --> -->
+```
