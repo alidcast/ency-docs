@@ -1,13 +1,6 @@
-<script>
-import CancelationTracker from '~components/tasks/CancelationTracker'
-export default {
-  components: {
-    CancelationTracker
-  }
-}
-</script>
-
-# Canceling a Task Yourself
+---
+title: Canceling a Task Yourself
+---
 
 There are two main ways that tasks are canceled: implicitly (based on how the task is configured, or because the task's host object was destroyed) or explicitly (by calling one of the cancel methods on the task property or task instance).
 
@@ -44,7 +37,7 @@ instance1.selfCanceled // true, manually canceled
 Here's a demo that shows that differences between all these approaches and how they all work together:
 
 <div class="showcase">
-  <CancelationTracker />
+  @[tasks/CancelationTracker]
 </div>
 
 ### Template

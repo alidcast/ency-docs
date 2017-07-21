@@ -1,4 +1,6 @@
-# Getting Started
+---
+title: Getting Started
+---
 
 At the center of every Ency application is the `Task` primitive, which represents an asynchronous operation that is both transparent–you always have access to its state–and controllable-you control if, when, and how repeat requests are run.
 

@@ -1,4 +1,6 @@
- # Per Instance Bindings
+---
+title: Per Instance Bindings
+---
 
 Sometimes you might need to bind certain data to a specific task instance.
 

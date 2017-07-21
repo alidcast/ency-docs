@@ -1,14 +1,6 @@
-<script>
-import ConcurrencyTimeline from '~components/tasks/ConcurrencyTimeline.vue'
-
-export default {
-  components: {
-    ConcurrencyTimeline
-  }
-}
-</script>
-
-# Managing Task Concurrency
+---
+title: Managing Task Concurrency
+---
 
 You'll often want to control the flow and frequency of concurrent operations. For example, you might not want to fire an ajax call until the user stops typing or you might only want to request the scroll position of a page after a certain period of time. Ency was built for these sort of operations in mind. Tasks have a `flow` modifier that you can use to manage the flow of repeat requests.
 
@@ -20,7 +12,7 @@ You'll often want to control the flow and frequency of concurrent operations. Fo
 By default, tasks run concurrently. In the demo below, notice how multiple calls to the same operation during the same period of time causes the lifespan of each one to overlap.
 
 <div class="showcase">
-  <ConcurrencyTimeline flow="default" />
+  @[tasks/ConcurrencyTimeline](flow="default")
 </div>
 
 
@@ -47,7 +39,7 @@ With `.flow('enqueue')`, repeat calls are enqueued and only run when the previou
 In the demo below, notice how repeat calls do not overlap but all of them are eventually run to completion.
 
 <div class="showcase">
-  <ConcurrencyTimeline flow="enqueue" />
+  @[tasks/ConcurrencyTimeline](flow="enqueue")
 </div>
 
 #### Drop
@@ -57,7 +49,7 @@ With `.flow('drop')`, repeat calls are dropped and ignored.
 In the demo below, notice how once the first instance starts running, all other calls during the same time period are never waited on or fired.
 
 <div class="showcase">
-  <ConcurrencyTimeline flow="drop" />
+  <tasks/ConcurrencyTimeline flow="drop" />
 </div>
 
 
@@ -68,7 +60,7 @@ With `flow('restart')`, repeat calls cancel ongoing operations in favor of the n
 In the example below, notice how if a new instance is created during the same span of time, the older, ongoing instance is immediately canceled.
 
 <div>
-  <ConcurrencyTimeline flow="restart" />
+  @[tasks/ConcurrencyTimeline](flow="restart")
 </div>
 
 ## What if I want to run more than one instance at once?
@@ -91,7 +83,7 @@ Now, when you run the task, up to three instances are allowed to run at once whi
 
 
 <div class="showcase">
-  <ConcurrencyTimeline flow="enqueue" :maxRunning=3 />
+  @[tasks/ConcurrencyTimeline](flow="enqueue" :maxRunning=3)
 </div>
 
 ### What if I want to delay the execution of the task?
@@ -112,7 +104,7 @@ Now, when you run the task, each instance waits 400ms before starting. If it's c
 
 
 <div class="showcase">
-  <ConcurrencyTimeline flow="restart" :delay=1000 />
+  @[tasks/ConcurrencyTimeline](flow=restart" :delay=1000)
 </div>
 
 ### How does this differ from throttle and debounce functions?

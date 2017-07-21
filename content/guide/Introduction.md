@@ -1,4 +1,6 @@
-# What's is Ency?
+---
+title: What's is Ency?
+---
 
 Ency helps you manage complex, event-driven operations with minimal code.
 

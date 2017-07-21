@@ -1,4 +1,7 @@
-# Subscribing to Task Callbacks
+---
+title: Subscribing to Task Callbacks
+---
+
 
 Writing complex operations can get messy and it can be useful to semantically separate corner case logic from the core logic of the operation. Because of this, Ency allows you to subscribe to callbacks that are executed based on different  stages or results of an operation.
 

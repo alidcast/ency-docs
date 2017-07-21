@@ -1,14 +1,6 @@
-<script>
-import StateInteractions from '~components/tasks/StateInteractions.vue'
-
-export default {
-  components: {
-    StateInteractions
-  }
-}
-</script>
-
-# Handling UI Interactions
+---
+title: Handling UI Interactions
+---
 
 You'll often need to know the state of an ongoing operation so that you can update UI accordingly. For example, you might need to display a loading spinner when an operation is running, or to disable a button when its operation is already active. Ency exposes as much derived state as possible so that it's easy to handle everyday, front-end logic.
 
@@ -44,7 +36,7 @@ The benefit of using this helper is that the timeout is disposable. If the opera
 Here's a simple example of how you can use these states to handle UI interactions. Notice how each button changes based on the task's derived state.
 
 <div>
-  <StateInteractions />
+  @[tasks/StateInteractions]
 </div>
 
 ### Template

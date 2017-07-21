@@ -1,17 +1,7 @@
-<script>
-import CoinFlip from '~components/tasks/examples/CoinFlip.vue'
-
-export default {
-  components: {
-    CoinFlip
-  }
-}
-</script>
-
 ## Coin Flip
 
 <div class="showcase">
-  <CoinFlip />
+  @[tasks/examples/CoinFlip]
 </div>
 
 ### Script

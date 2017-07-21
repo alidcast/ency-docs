@@ -1,5 +1,4 @@
-const resolve = require('path').resolve
-const menu = require('./docs.menu')
+const { resolve } = require('path')
 
 module.exports = {
   head: {
@@ -13,22 +12,9 @@ module.exports = {
       { rel: 'icon', type: 'image/x-icon', href: 'ency.ico' }
     ]
   },
-  css: [
-    'highlight.js/styles/hybrid.css',
-    { src: '~assets/sass/global.sass', lang: 'sass' }
-  ],
-  loading: { color: '#3B8070' },
   build: {
     extend (config, ctx) {
-      /**
-       * Alias
-       */
-      config.resolve.alias['~content'] = resolve(__dirname, 'content')
       config.resolve.alias['~utilities'] = resolve(__dirname, 'utilities')
-
-      /**
-       * Loaders.
-       */
       if (ctx.isClient) {
         config.module.rules.push({
           enforce: 'pre',
@@ -37,38 +23,20 @@ module.exports = {
           exclude: /(node_modules)/
         })
       }
-      // config.module.rules.push({
-      //   test: /\.md/,
-      //   loader: 'markdownit-loader'
-      // })
-      config.module.rules.push({
-        test: /\.md/,
-        loader: 'vue-markdown-loader'
-      })
     },
     vendor: [
       'vuency'
     ]
   },
   plugins: [
-    '~plugins/vuency'
+    { src: '~plugins/vuency', ssr: false }
   ],
-  generate: {
-    routes: menuToRoutes(menu)
-  }
-}
-
-/**
- * Convert a list of menu items to an array of dynamic route params.
- *
- */
-function menuToRoutes(menu, query = '/') {
-  let routes = []
-  menu.forEach(group => {
-    // for simplicity, we ignore group headings and just create a top level route
-    // for each subsection
-    if (group[1] instanceof Array) group[1].forEach(subsection => routes.push(`${query}${subsection}`))
-    else group.forEach(section => routes.push(`${query}${section}`))
-  })
-  return routes
+  modules: [
+    'nuxtent'
+  ],
+  css: [
+    'highlight.js/styles/hybrid.css',
+    { src: '~assets/sass/global.sass', lang: 'sass' }
+  ],
+  loading: { color: '#3B8070' },
 }

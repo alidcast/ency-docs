@@ -1,17 +1,7 @@
-<script>
-import CountdownTimer from '~components/tasks/examples/CountdownTimer.vue'
-
-export default {
-  components: {
-    CountdownTimer
-  }
-}
-</script>
-
 ## Countdown Timer
 
 <div class="showcase">
-    <CountdownTimer />
+    @[tasks/examples/CountdownTimer]
 </div>
 
 ```js

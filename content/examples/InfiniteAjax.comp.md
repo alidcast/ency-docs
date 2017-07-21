@@ -1,17 +1,7 @@
-<script>
-import InfiniteAjax from '~components/tasks/examples/InfiniteAjax.vue'
-
-export default {
-  components: {
-    InfiniteAjax
-  }
-}
-</script>
-
 ## Infinite Ajax
 
 <div class="showcase">
-  <InfiniteAjax />
+  @[tasks/examples/InfiniteAjax]
 </div>
 
 #### Script

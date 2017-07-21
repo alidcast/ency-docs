@@ -1,19 +1,9 @@
-<script>
-import QuestionGenie from '~components/tasks/examples/QuestionGenie.vue'
-
-export default {
-  components: {
-    QuestionGenie
-  }
-}
-</script>
-
 ## Question Genie
 
 (The component below is a modified version of an example shown in the [Vuejs documentation about watchers](https://vuejs.org/v2/guide/computed.html#Watchers)).
 
 <div class="showcase">
-  <QuestionGenie />
+  @[tasks/examples/QuestionGenie]
 </div>
 
 #### Javascript

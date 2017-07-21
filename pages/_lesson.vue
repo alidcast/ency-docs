@@ -1,24 +1,27 @@
 <template lang='pug'>
   div.guide-page
       GuideToolbar(:toggleContent="toggleContent")
-      component.content(:is="currentLesson" :style="contentStyle")
+      div.content(:style="contentStyle")
+        //- TODO temporary until nuxtent-body is fixed.
+        h1 {{ lesson.title }}
+        nuxtent-body.content(v-if="isObject(lesson.body)" :body="lesson.body")
+        div(v-else v-html="lesson.body")
 </template>
 
 <script>
 import GuideToolbar from '~components/GuideToolbar'
 import { toHeading } from '~utilities/to-transforms'
-import docs from '~content/index'
 
 export default {
-  asyncData ({ params }) {
+  async asyncData ({ app, route, payload }) {
     return {
       showContent: true,
-      currentLesson: params.lesson || 'introduction'
+      lesson: await app.$content('/').get(route.path) || payload
     }
   },
 
   head () {
-    return { title: 'Ency - ' + toHeading(this.currentLesson) }
+    return { title: 'Ency - ' + toHeading(this.lesson.title) }
   },
 
   computed: {
@@ -28,14 +31,16 @@ export default {
   },
 
   methods: {
+    isObject (body) {
+      return typeof body === 'object'
+    },
     toggleContent () {
       this.showContent = !this.showContent
     }
   },
 
   components: {
-    GuideToolbar,
-    ...docs
+    GuideToolbar
   }
 }
 </script>
