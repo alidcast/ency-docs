@@ -11,10 +11,9 @@
 
 <script>
 export default {
-  data: () => ({
-    answer: ''
-  }),
-
+  data () {
+    return { answer: '' }
+  },
   tasks (t, { timeout }) {
     return {
       flipCoin: t(function * () {

@@ -10,7 +10,7 @@
 
 <script>
 import GuideToolbar from '~components/GuideToolbar'
-import { toHeading } from '~utilities/to-transforms'
+// import { toHeading } from '~utilities/to-transforms'
 
 export default {
   async asyncData ({ app, route, payload }) {
@@ -20,9 +20,9 @@ export default {
     }
   },
 
-  head () {
-    return { title: 'Ency - ' + toHeading(this.lesson.title) }
-  },
+  // head () {
+  //   return { title: 'Ency - ' + toHeading(this.lesson.title) }
+  // },
 
   computed: {
     contentStyle () {

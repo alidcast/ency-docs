@@ -23,13 +23,14 @@ module.exports = {
           exclude: /(node_modules)/
         })
       }
-    },
-    vendor: [
-      'vuency'
-    ]
+    }
+    // ,
+    // vendor: [
+    //   'vuency'
+    // ]
   },
   plugins: [
-    { src: '~plugins/vuency', ssr: false }
+    { src: '~plugins/vuency' }
   ],
   modules: [
     'nuxtent'

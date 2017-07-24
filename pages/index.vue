@@ -60,6 +60,7 @@
                 | Deliver code that is easier to reason about and
                 | maintain, and feels "at home" for JS developers.
 </template>
+
 <script>
 export default {
   data: () => ({
@@ -72,6 +73,7 @@ export default {
   }
 }
 </script>
+
 <style lang="sass">
 @import "../assets/sass/util.sass"
 
