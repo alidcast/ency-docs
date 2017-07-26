@@ -14,16 +14,15 @@
 </template>
 
 <script>
-import menu from '../docs.menu'
 import GuideMenu from '~components/GuideMenu'
 
 export default {
   props: {
+    menu: { type: Object, required: true },
     toggleContent: { type: Function, required: true }
   },
 
   data: () => ({
-    menu,
     showMenu: false
   }),
 

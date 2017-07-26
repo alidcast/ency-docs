@@ -1,5 +1,6 @@
 ---
 title: Getting Started
+order: 2
 ---
 
 At the center of every Ency application is the `Task` primitive, which represents an asynchronous operation that is both transparent–you always have access to its state–and controllable-you control if, when, and how repeat requests are run.
@@ -60,7 +61,7 @@ let instance1  = myTask.run(),
 task.isActive        // true
 
 // instance method - cancels a single instance of the operation
-instance2.cancel()  
+instance2.cancel()
 instance1.isRunning  // true
 instance2.isRunning  // false
 

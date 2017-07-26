@@ -2,10 +2,10 @@
   div.landing-page
     div.landing-header
       div.header-masthead
-        a(href="/")
+        nuxt-link(to="/")
           img.site-logo(src="~assets/img/logo.png")
       div.header-links
-        a.top-link(href="/introduction") Guide
+        nuxt-link.top-link(to="/guide/task-property") Guide
         div.dropdown-menu
           button(@click="showOptions = !showOptions")
             p.top-link Libraries <span class="arrow"> &#9662; </span>
@@ -22,9 +22,9 @@
           | Gain complete control and transparency over the execution of
           | asyncronous operations, with almost no code.
       div.actions-container
-        a.action-link(href="/introduction")
+        nuxt-link.action-link(to="/guide/introduction")
           p Learn More
-        a.action-link(href="/getting-started")
+        nuxt-link.action-link(to="/guide/getting-started")
           p Get Started
 
     div.landing-body

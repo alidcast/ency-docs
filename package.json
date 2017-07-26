@@ -18,9 +18,9 @@
     "highlight.js": "^9.10.0",
     "markdown-it-link-attributes": "^1.0.0",
     "nuxt": "^1.0.0-alpha.5",
-    "nuxtent": "^0.2.27",
+    "nuxtent": "^0.2.33",
     "sass-chunks": "0.0.2",
-    "vuency": "^0.1.0"
+    "vuency": "^0.1.1"
   },
   "devDependencies": {
     "babel-eslint": "^7.1.1",

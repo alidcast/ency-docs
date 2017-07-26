@@ -1,3 +1,7 @@
+---
+title: Task Property
+order: 1
+---
 
 # Using the task property
 
@@ -105,7 +109,7 @@ For more on task registration, see the [getting started](/getting-started) secti
 
 * Details:
 
-  Creates a task instance and schedules it to run.  
+  Creates a task instance and schedules it to run.
 
 
 ### abort
@@ -134,7 +138,7 @@ For more on task registration, see the [getting started](/getting-started) secti
 
 * Syntax: `task.flow('restart', { delay: 400 })`
 
-* Details:  
+* Details:
 
   Specifies the scheduling policy.
 

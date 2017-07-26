@@ -1,4 +1,7 @@
-## Coin Flip
+---
+title: Coin Flip
+order: 1
+---
 
 <div class="showcase">
   @[tasks/examples/CoinFlip]

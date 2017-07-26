@@ -1,5 +1,6 @@
 ---
-title: Canceling a Task Yourself
+title: Task Cancelation
+order: 5
 ---
 
 There are two main ways that tasks are canceled: implicitly (based on how the task is configured, or because the task's host object was destroyed) or explicitly (by calling one of the cancel methods on the task property or task instance).
@@ -27,7 +28,7 @@ let instance1 = task.run(),
 instance2.isCanceled   // true
 instance2.selfCanceled // false, canceled because of 'drop' policy
 
-instance1.cancel()    
+instance1.cancel()
 instance1.isCanceled   // true
 instance1.selfCanceled // true, manually canceled
 ```

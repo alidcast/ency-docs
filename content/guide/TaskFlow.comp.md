@@ -1,5 +1,6 @@
 ---
-title: Managing Task Concurrency
+title: Managing Flow
+order: 3
 ---
 
 You'll often want to control the flow and frequency of concurrent operations. For example, you might not want to fire an ajax call until the user stops typing or you might only want to request the scroll position of a page after a certain period of time. Ency was built for these sort of operations in mind. Tasks have a `flow` modifier that you can use to manage the flow of repeat requests.

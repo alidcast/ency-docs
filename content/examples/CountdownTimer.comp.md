@@ -1,4 +1,7 @@
-## Countdown Timer
+---
+title: Countdown Timer
+order: 2
+---
 
 <div class="showcase">
     @[tasks/examples/CountdownTimer]

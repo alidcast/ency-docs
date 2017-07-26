@@ -1,4 +1,7 @@
-## Infinite Ajax
+---
+title: Infinite Ajax
+order: 4
+---
 
 <div class="showcase">
   @[tasks/examples/InfiniteAjax]

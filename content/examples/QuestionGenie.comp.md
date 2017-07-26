@@ -1,4 +1,7 @@
-## Question Genie
+---
+title: Question Genie
+order: 3
+---
 
 (The component below is a modified version of an example shown in the [Vuejs documentation about watchers](https://vuejs.org/v2/guide/computed.html#Watchers)).
 

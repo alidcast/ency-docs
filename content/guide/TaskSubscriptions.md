@@ -1,5 +1,6 @@
 ---
-title: Subscribing to Task Callbacks
+title: Task Subscriptions
+order: 6
 ---
 
 

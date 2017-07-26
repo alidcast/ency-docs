@@ -1,5 +1,6 @@
 ---
-title: Per Instance Bindings
+title: Instance Bindings
+order: 7
 ---
 
 Sometimes you might need to bind certain data to a specific task instance.

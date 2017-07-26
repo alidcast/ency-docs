@@ -1,28 +1,26 @@
 <template lang='pug'>
-  div.guide-page
-      GuideToolbar(:toggleContent="toggleContent")
-      div.content(:style="contentStyle")
-        //- TODO temporary until nuxtent-body is fixed.
-        h1 {{ lesson.title }}
-        nuxtent-body.content(v-if="isObject(lesson.body)" :body="lesson.body")
-        div(v-else v-html="lesson.body")
+div.content(:style="contentStyle")
+  h1 {{ lesson.title }}
+  //- TODO temporary until nuxtent-body is fixed.
+  nuxtent-body.content(v-if="isObject(lesson.body)" :body="lesson.body")
+  div(v-else v-html="lesson.body")
 </template>
 
 <script>
 import GuideToolbar from '~components/GuideToolbar'
-// import { toHeading } from '~utilities/to-transforms'
+import { toHeading } from '~utilities/to-transforms'
 
 export default {
   async asyncData ({ app, route, payload }) {
     return {
       showContent: true,
-      lesson: await app.$content('/').get(route.path) || payload
+      lesson: await app.$content('/').get(route.params.slug) || payload
     }
   },
 
-  // head () {
-  //   return { title: 'Ency - ' + toHeading(this.lesson.title) }
-  // },
+  head () {
+    return { title: 'Ency - ' + toHeading(this.lesson.title) }
+  },
 
   computed: {
     contentStyle () {
@@ -46,7 +44,7 @@ export default {
 </script>
 
 <style lang="sass">
-@import "../assets/sass/util.sass"
+@import "../../assets/sass/util.sass"
 
 .content
   max-width: 42rem

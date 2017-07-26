@@ -1,5 +1,6 @@
 ---
 title: Handling UI Interactions
+order: 4
 ---
 
 You'll often need to know the state of an ongoing operation so that you can update UI accordingly. For example, you might need to display a loading spinner when an operation is running, or to disable a button when its operation is already active. Ency exposes as much derived state as possible so that it's easy to handle everyday, front-end logic.
