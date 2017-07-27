@@ -56,8 +56,8 @@ export default {
 
     toolbarStyleVars () {
       return this.isDefault
-        ? { '--p1-color': ' #2c8ba0', '--p2-color': '#d7eff4', '--p3-color': '#ebf7fa' }
-        : { '--p1-color': ' #2d8655', '--p2-color': '#c6ecd7', '--p3-color': '#ecf9f2' }
+        ? { '--p1-color': '#2c8ba0', '--p2-color': '#d7eff4', '--p3-color': '#ebf7fa' }
+        : { '--p1-color': '#339966', '--p2-color': '#c6ecd7', '--p3-color': '#ecf9f2' }
     },
 
     forStyle () {
@@ -148,6 +148,7 @@ function organizeSections (pages) {
 .framework-options
   display: inline-block
   +media('>desktop')
+    transition-delay: 1s
     &:hover .options-list
       display: block !important
 .options-button

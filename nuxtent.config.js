@@ -44,6 +44,6 @@ module.exports = {
   },
 
   api: {
-    baseURL: (isProd) => isProd ? 'http://localhost:3000' : 'http://localhost:3000'
+    baseURL: (isProd) => isProd ? 'https://ency.now.sh ' : 'https://localhost:3000'
   }
 }
