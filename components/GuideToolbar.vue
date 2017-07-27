@@ -57,7 +57,7 @@ export default {
     toolbarStyleVars () {
       return this.isDefault
         ? { '--p1-color': ' #2c8ba0', '--p2-color': '#d7eff4', '--p3-color': '#ebf7fa' }
-        : { '--p1-color': ' #3e8e41', '--p2-color': ' #cae8cb', '--p3-color': '#edf7ee' }
+        : { '--p1-color': ' #2d8655', '--p2-color': '#c6ecd7', '--p3-color': '#ecf9f2' }
     },
 
     forStyle () {
