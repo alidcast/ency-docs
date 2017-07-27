@@ -2,20 +2,38 @@ const hljs = require('highlight.js')
 const externalLinks = require('markdown-it-link-attributes')
 
 module.exports = {
-  content: {
-    isPost: false,
-    permalink: ':slug',
-    routes: [
-      {
-        name: 'guide-lesson',
-        method: 'get'
-      },
-      {
-        name: 'guide',
-        method: 'getAll'
-      }
-    ]
-  },
+  content: [
+    ['ency', {
+      isPost: false,
+      permalink: ':slug',
+      anchorsLevel: 1,
+      routes: [
+        {
+          name: 'ency-lesson',
+          method: 'get'
+        },
+        {
+          name: 'ency',
+          method: 'getAll'
+        }
+      ]
+    }],
+    ['vuency', {
+      isPost: false,
+      permalink: ':slug',
+      anchorsLevel: 1,
+      routes: [
+        {
+          name: 'vuency-lesson',
+          method: 'get'
+        },
+        {
+          name: 'vuency',
+          method: 'getAll'
+        }
+      ]
+    }]
+  ],
 
   parsers: {
     md: {

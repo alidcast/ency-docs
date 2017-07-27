@@ -18,7 +18,7 @@ import GuideMenu from '~components/GuideMenu'
 
 export default {
   props: {
-    menu: { type: Object, required: true },
+    menu: { required: true },
     toggleContent: { type: Function, required: true }
   },
 
