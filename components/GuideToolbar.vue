@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.toolbar.responsive-toolbar
+  div.toolbar.responsive-toolbar(:style="toolbarStyleVars")
     div.toolbar-masthead
       a.site-title(href="/") {{ title }}
       div.framework-options
@@ -12,7 +12,12 @@
 
     div.toolbar-menu
       button.mobile-menu-button(@click="toggleDisplay") Menu
-      GuideMenu(class="main-menu" :style="menuStyle" :menu="menu")
+      div.menu-container(class="main-menu" :style="menuStyle" :menu="menu")
+        template(v-for="section in Object.keys(categorizedMenu)")
+          ul(v-if="categorizedMenu[section].length > 0")
+            h5.group-heading {{ section }}
+            li(v-for="lesson in categorizedMenu[section]")
+              nuxt-link.section-heading(:to="lesson.path") {{ lesson.title }}
 
     div.toolbar-links
       a.github-link(href="https://github.com/alidcastano/vuency")
@@ -20,8 +25,6 @@
 </template>
 
 <script>
-import GuideMenu from '~components/GuideMenu'
-
 export default {
   props: {
     title: { type: String, required: true },
@@ -39,13 +42,27 @@ export default {
   }),
 
   computed: {
+    categorizedMenu () {
+      return organizeSections(this.menu)
+    },
+
+    isDefault () {
+      return this.title === 'Ency.js'
+    },
+
     frameworkName () {
-      return this.title === 'Vuency' ? 'Vue.js' : 'Javascript'
+      return this.isDefault ? 'Javascript' : 'Vue'
+    },
+
+    toolbarStyleVars () {
+      return this.isDefault
+        ? { '--p1-color': ' #2c8ba0', '--p2-color': '#d7eff4', '--p3-color': '#ebf7fa' }
+        : { '--p1-color': ' #3e8e41', '--p2-color': ' #cae8cb', '--p3-color': '#edf7ee' }
     },
 
     forStyle () {
       const abs = { 'position': 'absolute' }
-      this.frameworkName === 'Javascript' ? abs.left = '5rem' : abs.left = '7rem'
+      this.isDefault ? abs.left = '5rem' : abs.left = '7rem'
       return abs
     },
 
@@ -59,11 +76,19 @@ export default {
       this.toggleContent()
       this.showMenu = !this.showMenu
     }
-  },
-
-  components: {
-    GuideMenu
   }
+}
+
+function organizeSections (pages) {
+  const menu = { guide: [], examples: [], api: [] }
+  pages.forEach(page => {  // organize
+    const pageSection = page.meta.section.replace('/', '')
+    if (menu[pageSection]) menu[pageSection].push(page)
+  })
+  Object.keys(menu).forEach(key => {  // order
+    menu[key].sort((p1, p2) => p1.order - p2.order)
+  })
+  return menu
 }
 </script>
 
@@ -71,8 +96,7 @@ export default {
 @import "../assets/sass/util.sass"
 
 .toolbar
-  background-color: $primary-3
-  // padding-left: 0
+  background-color: var(--p2-color)
   a
     color: inherit
     text-decoration: none
@@ -133,8 +157,8 @@ export default {
   height: 50%
   padding: .25rem
   border: none
-  background-color: $primary-4
-  color: $primary-1
+  background-color: var(--p3-color)
+  color: var(--p1-color)
   border-radius: 4px
   cursor: pointer
   &:focus
@@ -143,8 +167,8 @@ export default {
     top: -.5rem
     padding: .25rem .4rem
 .options-list
-  background-color: $primary-4
-  border: 1px solid $primary-1
+  background-color: var(--p3-color)
+  border: 1px solid var(--p1-color)
   position: absolute
   top: 1.5rem
   left: 10rem
@@ -153,12 +177,12 @@ export default {
   list-style-type: none
   +media('>desktop')
     top: 2.5rem
-    left: 15.55rem
+    left: 15.85rem
     padding: .5rem 2rem
   li:nth-child(n+2)
     margin-top: .25rem
     padding-top: .25rem
-    border-top: 1px solid $primary-3
+    border-top: 1px solid var(--p3-color)
 .toolbar-menu
   position: relative
   +media('>desktop')
@@ -169,8 +193,8 @@ export default {
   display: block
   margin: 1rem 1rem
   padding: .3rem .5rem
-  background-color: $primary-1
-  border: $primary-1 1px solid
+  background-color: var(--p1-color)
+  border: var(--p1-color) 1px solid
   color: #fff
   border-radius: .4rem
   +media('>phone')
@@ -179,7 +203,7 @@ export default {
   +media('>desktop')
     display: none
 .main-menu
-  background-color: $primary-4
+  background-color: var(--p3-color)
   padding: 1rem .5rem 1rem 1.5rem
   overflow: scroll
   height: 100%
@@ -191,10 +215,28 @@ export default {
   +media('>desktop')
     // override mobile data
     display: block !important
-    // TODO
     // theme
-    border-top: $primary-1 2px solid
-    border-left: $primary-1 2px solid
+    border-top: var(--p1-color) 2px solid
+    border-left: var(--p1-color) 2px solid
+
+
+.menu-container
+  ul
+    list-style: none
+    padding-left: 0
+  a
+    color: inherit
+    &:hover
+      text-decoration: none
+.group-heading
+  margin-bottom: .75rem
+  font-size: .9rem
+  font-weight: 500
+  text-transform: uppercase
+  color: var(--p1-color)
+.section-heading
+  display: block
+  margin-bottom: .5rem
 
 .github-link
   +media('>desktop')
@@ -202,11 +244,11 @@ export default {
     margin-left: -40%
   .icon-github
     font-size: 2rem
-    color: $primary-1
+    color: var(--p1-color)
   .plugin-version
     display: none
   +media('>desktop')
-    background-color: $primary-1
+    background-color: var(--p1-color)
     padding: .5rem 3rem
     +flex-place('children', center, center)
     .icon-github
