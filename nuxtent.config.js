@@ -5,7 +5,6 @@ module.exports = {
     ['ency', {
       isPost: false,
       permalink: ':slug',
-      anchorsLevel: 1,
       routes: [
         {
           name: 'ency-lesson',
@@ -20,7 +19,6 @@ module.exports = {
     ['vuency', {
       isPost: false,
       permalink: ':slug',
-      anchorsLevel: 1,
       routes: [
         {
           name: 'vuency-lesson',
@@ -44,6 +42,8 @@ module.exports = {
   },
 
   api: {
-    baseURL: (isProd) => isProd ? 'https://ency.now.sh ' : 'https://localhost:3000'
+    baseURL: (isProd) => isProd 
+      ? 'https://ency.now.sh'
+      : 'http://localhost:3000'
   }
 }
