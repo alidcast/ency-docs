@@ -38,5 +38,5 @@ module.exports = {
     'highlight.js/styles/hybrid.css',
     { src: '~assets/sass/global.sass', lang: 'sass' }
   ],
-  loading: { color: '#3B8070' },
+  loading: { color: '#2c8ba0' }
 }

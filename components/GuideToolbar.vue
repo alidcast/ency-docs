@@ -2,10 +2,16 @@
   div.toolbar.responsive-toolbar
     div.toolbar-masthead
       a.site-title(href="/") {{ title }}
-      p.site-slogan Concurrency management <span> for {{ frameworkName }}. </span>
+      div.framework-options
+        button.options-button(@click="showOptions = !showOptions") &#9660;
+        ul.options-list(v-show="showOptions")
+          li(v-for="option in frameworks")
+            nuxt-link(:to="option.link") {{ option.name }}
+      p.site-slogan Concurrency management
+        | <span :style="forStyle">for {{ frameworkName }}.</span>
 
     div.toolbar-menu
-      button.mobile-menu-button(@click="toggleDisplay") Guide
+      button.mobile-menu-button(@click="toggleDisplay") Menu
       GuideMenu(class="main-menu" :style="menuStyle" :menu="menu")
 
     div.toolbar-links
@@ -24,12 +30,23 @@ export default {
   },
 
   data: () => ({
-    showMenu: false
+    showOptions: false,
+    showMenu: false,
+    frameworks: [
+      { name: 'Ency', link: '/ency' },
+      { name: 'Vuency', link: '/vuency' }
+    ]
   }),
 
   computed: {
     frameworkName () {
-      return this.title === 'Vuency' ? 'Vue' : 'Javascript'
+      return this.title === 'Vuency' ? 'Vue.js' : 'Javascript'
+    },
+
+    forStyle () {
+      const abs = { 'position': 'absolute' }
+      this.frameworkName === 'Javascript' ? abs.left = '5rem' : abs.left = '7rem'
+      return abs
     },
 
     menuStyle () {
@@ -77,7 +94,6 @@ export default {
     height: 100vh
     width: 18rem
     max-width: 100%
-    // margin-right: 5rem
 
 .toolbar-masthead
   text-align: center
@@ -103,8 +119,46 @@ export default {
     text-align: left
     span
       display: block
-      +position(absolute, null, 0, null, null)
 
+.site-title,
+.framework-options
+  display: inline-block
+  +media('>desktop')
+    &:hover .options-list
+      display: block !important
+.options-button
+  position: relative
+  top: 1rem
+  left: .5rem
+  height: 50%
+  padding: .25rem
+  border: none
+  background-color: $primary-4
+  color: $primary-1
+  border-radius: 4px
+  cursor: pointer
+  &:focus
+    outline: 0
+  +media('>desktop')
+    top: -.5rem
+    padding: .25rem .4rem
+.options-list
+  background-color: $primary-4
+  border: 1px solid $primary-1
+  position: absolute
+  top: 1.5rem
+  left: 10rem
+  padding: .25rem 1.25rem
+  border-radius: 4px
+  list-style-type: none
+  +media('>desktop')
+    top: 2.5rem
+    left: 15.55rem
+    padding: .5rem 2rem
+  li:nth-child(n+2)
+    margin-top: .25rem
+    padding-top: .25rem
+    border-top: 1px solid $primary-3
 .toolbar-menu
   position: relative
   +media('>desktop')

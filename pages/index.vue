@@ -5,15 +5,14 @@
         nuxt-link(to="/")
           img.site-logo(src="~assets/img/logo.png")
       div.header-links
-        nuxt-link.top-link(to="/guide/task-property") Guide
         div.dropdown-menu
           button(@click="showOptions = !showOptions")
-            p.top-link Libraries <span class="arrow"> &#9662; </span>
+            p.top-link Libraries <span class="arrow">&#9662;</span>
           ul.menu-options(:style="optionsClass")
             li
-              a(href="https://github.com/encyjs/ency" target="_blank") Plain JS
+              nuxt-link(to="/ency") Plain JS
             li
-              a(href="https://github.com/encyjs/vuency" target="_blank") Vue.js
+              nuxt-link(to="/vuency") Vue.js
 
     div.landing-lead
       div.pitch-container
@@ -22,9 +21,9 @@
           | Gain complete control and transparency over the execution of
           | asyncronous operations, with almost no code.
       div.actions-container
-        nuxt-link.action-link(to="/guide/introduction")
+        nuxt-link.action-link(to="/ency/introduction")
           p Learn More
-        nuxt-link.action-link(to="/guide/getting-started")
+        nuxt-link.action-link(to="/ency/getting-started")
           p Get Started
 
     div.landing-body
@@ -93,12 +92,11 @@ export default {
 
 .landing-header
   +flex-contain(row, wrap)
-  +flex-place('children', end, center)
+  +flex-place('children', start, center)
   padding: .5rem
   +media('>tablet')
     padding: 1rem 3rem
 .header-masthead
-  +flex-place('self', start, center)
   .site-logo
     height: 40px
     width: 125px
@@ -111,7 +109,7 @@ export default {
     .menu-options
       display: none
       position: absolute
-      top: 1.75rem
+      top: 1.55rem
       width: 6rem
       background: #fff
       border: 1px $primary-4 solid
@@ -132,14 +130,16 @@ export default {
       margin: 0 .5rem
   .arrow
     color: $gray-4
-    margin-left: -.125rem
+    margin-left: 0
     font-size: 1.125rem
     font-weight: 800
 
 .landing-lead
-  margin: 1rem auto 1rem auto
+  margin: -1rem auto 1rem 0
   max-width: 64rem
   padding: 1rem
+  +media('>tablet')
+    margin: -1.5rem auto 1rem auto
 .pitch-container
   .pitch-slogan
     color: $gray-1
