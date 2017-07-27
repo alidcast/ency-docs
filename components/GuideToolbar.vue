@@ -1,8 +1,8 @@
 <template lang="pug">
   div.toolbar.responsive-toolbar
     div.toolbar-masthead
-      a.site-title(href="/") Ency.js
-      p.site-slogan Concurrency management <span> for Javascript. </span>
+      a.site-title(href="/") {{ title }}
+      p.site-slogan Concurrency management <span> for {{ frameworkName }}. </span>
 
     div.toolbar-menu
       button.mobile-menu-button(@click="toggleDisplay") Guide
@@ -18,7 +18,8 @@ import GuideMenu from '~components/GuideMenu'
 
 export default {
   props: {
-    menu: { required: true },
+    title: { type: String, required: true },
+    menu: { type: Array, required: true },
     toggleContent: { type: Function, required: true }
   },
 
@@ -27,6 +28,10 @@ export default {
   }),
 
   computed: {
+    frameworkName () {
+      return this.title === 'Vuency' ? 'Vue' : 'Javascript'
+    },
+
     menuStyle () {
       return { 'display': this.showMenu ? 'block' : 'none' }
     }
@@ -154,10 +159,4 @@ export default {
       +flex-span(25%)
       font-size: 2.25rem
       color: #fff
-    // .plugin-version
-    //   display: block
-    //   +flex-span(25%)
-    //   margin: .25rem
-    //   color: #fff
-    //   font-size: 1.125rem
 </style>

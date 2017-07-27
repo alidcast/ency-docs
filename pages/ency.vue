@@ -1,6 +1,10 @@
 <template lang='pug'>
   div.guide-page
-    GuidePage(name="/ency" :pages="lessons")
+    GuidePage(
+      contentLabel="Ency.js"
+      routeName="/ency"
+      :pages="lessons"
+    )
       nuxt-child
 </template>
 
