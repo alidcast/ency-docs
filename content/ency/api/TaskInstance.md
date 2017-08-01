@@ -2,17 +2,6 @@
 title: Task Instance
 order: 2
 ---
-# Using a task instance
-
-Task instances can be accessed either by storing the return value of  task's `run` method or via the task's 'last' properties.
-
-For example:
-
-```js
-let taskInstance = task.run()
-
-taskInstance === task.lastCalled // true
-```
 
 ## Instance Data / Bindings
 

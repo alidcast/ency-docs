@@ -19,11 +19,11 @@ Most of the time it'll be sufficient to check if the task is running. When you f
 You can use the `timeout` helper injected into the `tasks` property.
 
 ```js
-tasks(t, { timeout }) {
-  return t(function * genTask() {
-    yield timeout(1000)
-  })
-}
+import task, { timeout } from 'ency'
+
+const myTask = task(function * exOperation() {
+  yield timeout(1000)
+})
 ```
 
 The benefit of using this helper is that the timeout is disposable. If the operation is a generator functions and the task finishes early, the timeout is automatically cleaned up, which ensures minimal latency in UI interactions.
@@ -41,41 +41,16 @@ Here's a simple example of how you can use these states to handle UI interaction
 </div>
 
 
-### Template
-
-```html
-<div class="ui-interactions">
-  <button @click="loader.run()">
-    {{ loader.isActive ? 'Loading...' : 'Run' }}
-  </button>
-
-  <button :class="{'isDisabled': loader.isIdle }"
-    @click="loader.abort()">
-    Cancel
-  </button>
-</div>
-```
-
-### Javascript
+With the following Javascript:
 
 ```js
-export default {
-  tasks: (t, { timeout }) => ({
-    loader: t(function* () {
-      yield timeout(1500)
-    })
-    // don't allow repeat calls to interrupt ongoing loading
-    .flow('drop')
-  })
-}
+task(function* () {
+  yield timeout(1500)
+}).flow('drop')
 ```
 
-### Styles
+All you would need to check is the state of the task. For example:
 
-```css
-.isDisabled {
-  opacity: 0.5;
-  pointer-events: none;
-  cursor: default;
-}
+```html
+<button>{{ loader.isActive ? 'Loading...' : 'Run' }}</button>
 ```

@@ -3,24 +3,6 @@ title: Task Property
 order: 1
 ---
 
-# Using the task property
-
-All registered tasks are automatically injected into the component instance and referenced by their name.
-
-For example:
-
-```js
-export default {
-  tasks(t) {
-    return t(function* myTask() {})
-  },
-  created() {
-    // use can use `this.myTask` here
-  }
-}
-```
-For more on task registration, see the [getting started](/getting-started) section.
-
 ## Task Data / States
 
 ### isActive

@@ -25,27 +25,7 @@ Best of all, Ency's API strikes a nice balance between declarative and imperativ
 
 ## Moving forward with Ency
 
-Essential:
-
-* [Install Ency](/installation)
-* [Learn basic usage](/getting-started)
-
-Advanced:
-
-* [Learn how to manage repeat requests](/task-flow)
-* [Learn how to cancel ongoing operations](/task-cancelation)
-* [Learn how to handle common UI interactions](/task-state)
-
-## Not convinced? - See Ency in action
-
-If you're still not convinced, check out the demos and code from the examples linked below and see the benefits yourself.
-
-Beginner examples:
-
-* [Coin Flip](/coin-flip)
-* [Countdown Timer](/countdown-timer)
-
-Advanced examples:
-
-* [Infinite Ajax](/infinite-ajax)
-* [Question Genie](/question-genie)
+* [Learn basic usage](/ency/getting-started)
+* [Learn how to manage repeat requests](/ency/task-flow)
+* [Learn how to cancel ongoing operations](/ency/task-cancelation)
+* [Learn how to handle common UI interactions](/ency/task-state)

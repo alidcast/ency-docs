@@ -21,21 +21,9 @@ Most of the time you won't want repeat calls to overlap, so you can use the `flo
 
 There are three options: you can either `enqueue`, `restart`, or `drop` repeat requests.
 
-The demos on this page, for example, run the following code:
-
-```javascript
-export default {
-  tasks: (t) => ({
-    defaultTask:    task(TASK_FN),
-    enqueuingTask:  task(TASK_FN).flow('enqueue'),
-    restartingTask: task(TASK_FN).flow('restart'),
-    droppingTask:   task(TASK_FN).flow('drop')
-  })
-}
-```
 #### Enqueue
 
-With `.flow('enqueue')`, repeat calls are enqueued and only run when the previous call finishes.
+With `task.flow('enqueue')`, repeat calls are enqueued and only run when the previous call finishes.
 
 In the demo below, notice how repeat calls do not overlap but all of them are eventually run to completion.
 
@@ -45,18 +33,18 @@ In the demo below, notice how repeat calls do not overlap but all of them are ev
 
 #### Drop
 
-With `.flow('drop')`, repeat calls are dropped and ignored.
+With `task.flow('drop')`, repeat calls are dropped and ignored.
 
 In the demo below, notice how once the first instance starts running, all other calls during the same time period are never waited on or fired.
 
 <div class="showcase">
-  <tasks/ConcurrencyTimeline flow="drop" />
+  @[tasks/ConcurrencyTimeline](flow="drop")
 </div>
 
 
 #### Restart
 
-With `flow('restart')`, repeat calls cancel ongoing operations in favor of the newly created instance of the operation.
+With `task.flow('restart')`, repeat calls cancel ongoing operations in favor of the newly created instance of the operation.
 
 In the example below, notice how if a new instance is created during the same span of time, the older, ongoing instance is immediately canceled.
 
@@ -73,18 +61,13 @@ By default, any custom flow policy only allows one instance to run at a time. Bu
 Here's an example with the `enqueue` policy:
 
 ```javascript
-export default {
-  tasks: (t) => ({
-    enqueuingTask: task(TASK_FN).flow('enqueue', { maxRunning: 3 })
-  })
-}
+task.flow('enqueue', { maxRunning: 3 })
 ```
 
 Now, when you run the task, up to three instances are allowed to run at once while all others are scheduled to run when space frees up.
 
-
 <div class="showcase">
-  @[tasks/ConcurrencyTimeline](flow="enqueue" :maxRunning=3)
+  @[tasks/ConcurrencyTimeline](flow="enqueue" maxRunning=3)
 </div>
 
 ### What if I want to delay the execution of the task?
@@ -94,18 +77,13 @@ To delay the execution of an operation, you can set the desired amount of time i
 For example, if you wanted to simulate a debounce function, you could use the `restart` policy with a specified `delay`:
 
 ```javascript
-export default {
-  tasks: (t) => ({
-    restartingTask: task(TASK_FN).flow('restart', { delay: 400 })
-  })
-}
+task.flow('restart', { delay: 400 })
 ```
 
 Now, when you run the task, each instance waits 400ms before starting. If it's called again within that time, then it's dropped and not run at all, while another one is started in its favor.
 
-
 <div class="showcase">
-  @[tasks/ConcurrencyTimeline](flow=restart" :delay=1000)
+  @[tasks/ConcurrencyTimeline](flow="restart" delay=1000)
 </div>
 
 ### How does this differ from throttle and debounce functions?
