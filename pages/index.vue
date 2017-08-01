@@ -139,7 +139,7 @@ export default {
   max-width: 64rem
   padding: 1rem
   +media('>tablet')
-    margin: -1.5rem auto 1rem auto
+    margin: 0 auto 1rem auto
 .pitch-container
   .pitch-slogan
     color: $gray-1
@@ -186,6 +186,7 @@ export default {
   border-bottom: 1rem solid $primary-3
   padding: 2.5rem .5rem .75rem .5rem
   +media('>tablet')
+    margin-top: 3rem
     padding: 3rem 3rem 1.25rem 3rem
 .benefits-container
   margin: 0 auto

@@ -197,6 +197,7 @@ function organizeSections (pages) {
   padding: .25rem 1.25rem
   border-radius: 4px
   list-style-type: none
+  z-index: 1
   +media('>desktop')
     top: 2.5rem
     // left: 15.85rem
