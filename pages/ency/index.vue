@@ -3,7 +3,7 @@
 <script>
 export default {
   fetch ({ redirect }) {
-    redirect('/ency/introduction')
+    // redirect('/ency/introduction')
   }
 }
 </script>

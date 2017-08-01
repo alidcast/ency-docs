@@ -3,12 +3,12 @@ LessonPage(:lesson="lesson")
 </template>
 
 <script>
-import LessonPage from '~components/LessonPage.vue'
+import LessonPage from '~/components/LessonPage.vue'
 
 export default {
-  async asyncData ({ app, route, payload }) {
+  async asyncData ({ app, params, payload }) {
     return {
-      lesson: await app.$content('/ency').get(route.params.slug) || payload
+      lesson: payload || await app.$content('/ency').get(params.slug)
     }
   },
 

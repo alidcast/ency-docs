@@ -47,7 +47,7 @@ export default {
     },
 
     isDefault () {
-      return this.title === 'Ency.js'
+      return this.title === 'Ency'
     },
 
     frameworkName () {
@@ -71,6 +71,11 @@ export default {
     }
   },
 
+  watch: {
+    $route () {
+      if (this.showMenu === true) this.toggleDisplay()
+    }
+  },
   methods: {
     toggleDisplay () { // display of content and menu is inversed
       this.toggleContent()

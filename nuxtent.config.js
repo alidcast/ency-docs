@@ -3,29 +3,29 @@ const hljs = require('highlight.js')
 module.exports = {
   content: [
     ['ency', {
-      isPost: false,
       permalink: ':slug',
+      isPost: false,
       routes: [
         {
-          name: 'ency-lesson',
+          path: '/ency/_slug',
           method: 'get'
         },
         {
-          name: 'ency',
+          path: '/ency',
           method: 'getAll'
         }
       ]
     }],
     ['vuency', {
-      isPost: false,
       permalink: ':slug',
+      isPost: false,
       routes: [
         {
-          name: 'vuency-lesson',
+          path: '/vuency/_slug',
           method: 'get'
         },
         {
-          name: 'vuency',
+          path: '/vuency',
           method: 'getAll'
         }
       ]
@@ -42,7 +42,7 @@ module.exports = {
   },
 
   api: {
-    baseURL: (isProd) => isProd 
+    baseURL: (isProd) => isProd
       ? 'https://ency.now.sh'
       : 'http://localhost:3000'
   }

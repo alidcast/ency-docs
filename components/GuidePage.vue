@@ -2,7 +2,7 @@
   div.guide-page
     GuideToolbar(
       :toggleContent="toggleContent"
-      :menu="menu"
+      :menu="pages"
       :title="contentLabel"
     )
     div(:style="contentStyle")
@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import GuideToolbar from '~components/GuideToolbar'
+import GuideToolbar from '~/components/GuideToolbar'
 
 export default {
   props: {
@@ -24,13 +24,6 @@ export default {
   }),
 
   computed: {
-    menu () {
-      return this.pages.map(page => {
-        page.path = this.routeName + page.permalink
-        return page
-      })
-    },
-
     contentStyle () {
       return { 'display': this.showContent ? 'block' : 'none' }
     }

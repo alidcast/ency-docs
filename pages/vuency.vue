@@ -9,12 +9,14 @@
 </template>
 
 <script>
-import GuidePage from '~components/GuidePage'
+import GuidePage from '~/components/GuidePage'
 
 export default {
-  asyncData: async({ app, payload }) => ({
-    lessons: await app.$content('/vuency').getAll() || payload
-  }),
+  asyncData: async ({ app, payload }) => {
+    return {
+      lessons: payload || await app.$content('/vuency').getAll()
+    }
+  },
   components: {
     GuidePage
   }
