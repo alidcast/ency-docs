@@ -4,7 +4,7 @@
       a.site-title(href="/") {{ title }}
       div.framework-options
         button.options-button(@click="showOptions = !showOptions") &#9660;
-        ul.options-list(v-show="showOptions")
+        ul.options-list(v-show="showOptions" :style="optsPosStyle")
           li(v-for="option in frameworks")
             nuxt-link(:to="option.link") {{ option.name }}
       p.site-slogan Concurrency management
@@ -38,7 +38,8 @@ export default {
     frameworks: [
       { name: 'Ency', link: '/ency' },
       { name: 'Vuency', link: '/vuency' }
-    ]
+    ],
+    optsPosStyle: {}
   }),
 
   computed: {
@@ -80,7 +81,23 @@ export default {
     toggleDisplay () { // display of content and menu is inversed
       this.toggleContent()
       this.showMenu = !this.showMenu
+    },
+
+    setOptsPostStyle () {
+      if (window.innerWidth > 992) {
+        const abs = { 'position': 'absolute' }
+        this.isDefault ? abs.left = '14rem' : abs.left = '16rem'
+        this.optsPosStyle = abs
+      } else {
+        const abs = { 'position': 'absolute' }
+        this.isDefault ? abs.left = '9rem' : abs.left = '11rem'
+        this.optsPosStyle = abs
+      }
     }
+  },
+  mounted () {
+    this.setOptsPostStyle()
+    window.addEventListener('resize', () => this.setOptsPostStyle())
   }
 }
 
@@ -153,7 +170,6 @@ function organizeSections (pages) {
 .framework-options
   display: inline-block
   +media('>desktop')
-    transition-delay: 1s
     &:hover .options-list
       display: block !important
 .options-button
@@ -177,13 +193,13 @@ function organizeSections (pages) {
   border: 1px solid var(--p1-color)
   position: absolute
   top: 1.5rem
-  left: 10rem
+  // left: 10rem
   padding: .25rem 1.25rem
   border-radius: 4px
   list-style-type: none
   +media('>desktop')
     top: 2.5rem
-    left: 15.85rem
+    // left: 15.85rem
     padding: .5rem 2rem
   li:nth-child(n+2)
     margin-top: .25rem
