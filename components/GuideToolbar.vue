@@ -20,7 +20,7 @@
               nuxt-link.section-heading(:to="lesson.path") {{ lesson.title }}
 
     div.toolbar-links
-      a.github-link(href="https://github.com/alidcastano/vuency")
+      a.github-link(:href="githubLink")
         span.icon-github
 </template>
 
@@ -69,6 +69,12 @@ export default {
 
     menuStyle () {
       return { 'display': this.showMenu ? 'block' : 'none' }
+    },
+
+    githubLink () {
+      return this.isDefault
+        ? 'https://github.com/encyjs/ency'
+        : 'https://github.com/encyjs/vuency'
     }
   },
 
