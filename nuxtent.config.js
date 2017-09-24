@@ -27,11 +27,5 @@ module.exports = {
         return hljs.highlight(lang, code, true).value
       }
     }
-  },
-
-  api: {
-    baseURL: process.env.NODE_ENV === 'production'
-      ? 'https://ency.now.sh'
-      : 'http://localhost:3000'
   }
 }
