@@ -5,29 +5,17 @@ module.exports = {
     ['ency', {
       permalink: ':slug',
       isPost: false,
-      routes: [
-        {
-          path: '/ency/_slug',
-          method: 'get'
-        },
-        {
-          path: '/ency',
-          method: 'getAll'
-        }
+      page: '/ency/_slug',
+      generate: [
+        'get', 'getAll'
       ]
     }],
     ['vuency', {
       permalink: ':slug',
       isPost: false,
-      routes: [
-        {
-          path: '/vuency/_slug',
-          method: 'get'
-        },
-        {
-          path: '/vuency',
-          method: 'getAll'
-        }
+      page: '/vuency/_slug',
+      generate: [
+        'get', 'getAll'
       ]
     }]
   ],
@@ -42,7 +30,7 @@ module.exports = {
   },
 
   api: {
-    baseURL: (isProd) => isProd
+    baseURL: process.env.NODE_ENV === 'production'
       ? 'https://ency.now.sh'
       : 'http://localhost:3000'
   }

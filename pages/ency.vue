@@ -12,9 +12,9 @@
 import GuidePage from '~/components/GuidePage'
 
 export default {
-  asyncData: async ({ app, payload }) => {
+  asyncData: async ({ app }) => {
     return {
-      lessons: payload || await app.$content('/ency').getAll()
+      lessons: await app.$content('/ency').getAll()
     }
   },
   components: {

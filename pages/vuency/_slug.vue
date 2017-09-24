@@ -6,9 +6,9 @@ LessonPage(:lesson="lesson")
 import LessonPage from '~/components/LessonPage.vue'
 
 export default {
-  async asyncData ({ app, params, payload }) {
+  async asyncData ({ app, params }) {
     return {
-      lesson: payload || await app.$content('/vuency').get(params.slug)
+      lesson: await app.$content('/vuency').get(params.slug)
     }
   },
 

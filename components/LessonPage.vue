@@ -1,22 +1,13 @@
 <template lang='pug'>
 div.content
   h1 {{ lesson.title }}
-
-  //- TODO temporary until nuxtent-body is fixed.
-  nuxtent-body.content(v-if="isObject(lesson.body)" :body="lesson.body")
-  div(v-else v-html="lesson.body")
+  nuxtent-body(:body="lesson.body")
 </template>
 
 <script>
 export default {
   props: {
     lesson: { type: Object, required: true }
-  },
-
-  methods: {
-    isObject (body) {
-      return typeof body === 'object'
-    }
   }
 }
 </script>
